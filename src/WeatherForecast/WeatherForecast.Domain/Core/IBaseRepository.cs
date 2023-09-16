@@ -2,7 +2,7 @@
 
 namespace WeatherForecast.Domain.Core
 {
-    public interface IBaseRepositoryAsync<T> where T : BaseEntity
+    public interface IBaseRepository<T> where T : BaseEntity
     {
         Task<T> GetByIdAsync(int id);
         Task<IList<T>> ListAllAsync();

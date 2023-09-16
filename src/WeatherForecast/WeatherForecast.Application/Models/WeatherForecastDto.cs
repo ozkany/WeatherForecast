@@ -1,16 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using WeatherForecast.Domain.Validators;
 
-namespace WeatherForecast.Domain.Entities
+namespace WeatherForecast.Application.Models
 {
-    public class WeatherForecast : BaseEntity
+    public class WeatherForecastDto
     {
-        [Required]
-        [FutureDate]
         public DateTime Date { get; set; }
 
-        [Required]
-        [Range(-60, 60)]
         public int Temperature { get; set; }
+
+        public string Summary { get; set; }
     }
 }

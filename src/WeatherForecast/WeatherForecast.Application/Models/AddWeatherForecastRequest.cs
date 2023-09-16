@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using WeatherForecast.Domain.Validators;
 
-namespace WeatherForecast.Domain.Entities
+namespace WeatherForecast.Application.Models
 {
-    public class WeatherForecast : BaseEntity
+    public class AddWeatherForecastRequest
     {
         [Required]
         [FutureDate]

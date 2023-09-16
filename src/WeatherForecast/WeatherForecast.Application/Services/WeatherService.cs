@@ -16,14 +16,22 @@ namespace WeatherForecast.Application.Services
             _mapper = mapper;
         }
 
-        public Task<bool> CreateWeatherForecast(AddWeatherForecastRequest req)
+        public async Task<bool> AddWeatherForecast(AddWeatherForecastRequest req)
         {
-            throw new NotImplementedException();
+            var weatherForecast = _mapper.Map<Domain.Entities.WeatherForecast>(req);
+
+            await _repository.AddAsync(weatherForecast);
+
+            return await _repository.SaveChangesAsync() > 0;
         }
 
-        public Task<IReadOnlyCollection<WeatherForecastDto>> GetWeatherForecasts()
+        public async Task<IList<WeatherForecastDto>> GetWeeklyWeatherForecasts()
         {
-            throw new NotImplementedException();
+            var weatherForecasts = await _repository.ListAllAsync();
+
+            var weatherForecastsDto = _mapper.Map<List<WeatherForecastDto>>(weatherForecasts);
+
+            return weatherForecastsDto;
         }
     }
 }

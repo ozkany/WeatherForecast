@@ -10,5 +10,6 @@ namespace WeatherForecast.Domain.Core
         Task AddRangeAsync(IEnumerable<T> entities);
         void Update(T entity);
         void Delete(T entity);
+        Task<int> SaveChangesAsync();
     }
 }

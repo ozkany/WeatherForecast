@@ -4,8 +4,8 @@ namespace WeatherForecast.Application.Interfaces
 {
     public interface IWeatherService
     {
-        Task<bool> CreateWeatherForecast(AddWeatherForecastRequest req);
+        Task<bool> AddWeatherForecast(AddWeatherForecastRequest req);
 
-        Task<IReadOnlyCollection<WeatherForecastDto>> GetWeatherForecasts();
+        Task<IList<WeatherForecastDto>> GetWeeklyWeatherForecasts();
     }
 }

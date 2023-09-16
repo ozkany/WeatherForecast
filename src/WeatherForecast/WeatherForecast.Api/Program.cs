@@ -1,6 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+WeatherForecast.Application.DependencyInjection.ConfigureServices(builder.Services);
+WeatherForecast.Infrastructure.DependencyInjection.ConfigureServices(builder.Services);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

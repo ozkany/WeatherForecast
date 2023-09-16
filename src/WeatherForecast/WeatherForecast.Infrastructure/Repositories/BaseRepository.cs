@@ -5,11 +5,11 @@ using WeatherForecast.Infrastructure.Data;
 
 namespace WeatherForecast.Infrastructure.Repositories
 {
-    public class BaseRepositoryAsync<T> : IBaseRepository<T> where T : BaseEntity
+    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly WeatherForecastDbContext _dbContext;
 
-        public BaseRepositoryAsync(WeatherForecastDbContext dbContext)
+        public BaseRepository(WeatherForecastDbContext dbContext)
         {
             _dbContext = dbContext;
         }

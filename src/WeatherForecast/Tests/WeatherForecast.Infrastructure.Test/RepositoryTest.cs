@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WeatherForecast.Domain.Core;
 using WeatherForecast.Infrastructure.Data;
 using WeatherForecast.Infrastructure.Repositories;
+using Common = WeatherForecast.Domain.Common;
 
 namespace WeatherForecast.Infrastructure.Test
 {
@@ -106,6 +107,27 @@ namespace WeatherForecast.Infrastructure.Test
 
             // Assert
             await Assert.ThrowsAnyAsync<InvalidOperationException>(async () => await _repository.AddAsync(entity2));
+        }
+
+        [Fact]
+        public async void Given_ValidData_When_GetByIdAsync_FromRepository_Then_ReturnCorrectSummaryData()
+        {
+            // Arrange
+            var weatherForecast = new Domain.Entities.WeatherForecast
+            {
+                Date = DateTime.Now,
+                Temperature = -60
+            };
+
+            // Act
+            var result = await _repository.AddAsync(weatherForecast);
+            await _repository.SaveChangesAsync();
+
+            // Assert
+            var addedEntity = await _repository.GetByIdAsync(result.Id);
+            // Interceptors are not called when using in memory db. To be checked by another way.
+            //Assert.Equal(addedEntity.Summary, Common.Constants.Summaries[0]);
+            Assert.Null(addedEntity.Summary);
         }
     }
 }

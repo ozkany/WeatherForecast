@@ -20,7 +20,7 @@ namespace WeatherForecast.Application.Services
         {
             var weatherForecast = _mapper.Map<Domain.Entities.WeatherForecast>(request);
 
-            await _repository.AddAsync(weatherForecast);
+            weatherForecast = await _repository.AddAsync(weatherForecast);
 
             await _repository.SaveChangesAsync();
 

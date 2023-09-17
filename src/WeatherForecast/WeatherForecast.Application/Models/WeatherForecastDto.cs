@@ -3,7 +3,7 @@ using WeatherForecast.Domain.Validators;
 
 namespace WeatherForecast.Application.Models
 {
-    public class WeatherForecastDto
+    public record WeatherForecastDto
     {
         public int Id { get; set; }
 

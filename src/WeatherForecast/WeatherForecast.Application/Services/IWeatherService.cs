@@ -4,8 +4,10 @@ namespace WeatherForecast.Application.Interfaces
 {
     public interface IWeatherService
     {
-        Task<bool> AddWeatherForecast(AddWeatherForecastRequest req);
+        Task<int> AddWeatherForecastAsync(AddWeatherForecastRequest req);
 
-        Task<IList<WeatherForecastDto>> GetWeeklyWeatherForecasts();
+        Task<WeatherForecastDto> GetWeatherForecastAsync(int id);
+
+        Task<IList<WeatherForecastDto>> GetWeeklyWeatherForecastAsync();
     }
 }

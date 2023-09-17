@@ -14,6 +14,7 @@ namespace WeatherForecast.Infrastructure
             services.AddDbContext<WeatherForecastDbContext>(options => options.UseInMemoryDatabase("TestDb"));
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IWeatherRepository), typeof(WeatherRepository));
         }
     }
 }

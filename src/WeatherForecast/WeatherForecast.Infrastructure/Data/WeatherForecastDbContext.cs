@@ -18,6 +18,6 @@ namespace WeatherForecast.Infrastructure.Data
             => optionsBuilder
                 .AddInterceptors(_weatherForecastInterceptor);
 
-        public DbSet<Domain.Entities.WeatherForecast> Users { get; set; }
+        public DbSet<Domain.Entities.WeatherForecast> WeatherForecasts { get; set; }
     }
 }

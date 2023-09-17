@@ -7,10 +7,10 @@ namespace WeatherForecast.Application.Services
 {
     public class WeatherService : IWeatherService
     {
-        IBaseRepository<Domain.Entities.WeatherForecast> _repository;
+        IWeatherRepository _repository;
         private readonly IMapper _mapper;
 
-        public WeatherService(IBaseRepository<Domain.Entities.WeatherForecast> repository, IMapper mapper)
+        public WeatherService(IWeatherRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -38,7 +38,7 @@ namespace WeatherForecast.Application.Services
 
         public async Task<IList<WeatherForecastDto>> GetWeeklyWeatherForecastAsync()
         {
-            var weatherForecasts = await _repository.ListAllAsync();
+            var weatherForecasts = await _repository.GetWeeklyWeatherForecastAsync();
 
             var weatherForecastsDto = _mapper.Map<List<WeatherForecastDto>>(weatherForecasts);
 

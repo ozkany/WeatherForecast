@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace WeatherForecast.Infrastructure.Data
 {
@@ -12,6 +14,19 @@ namespace WeatherForecast.Infrastructure.Data
 
         public WeatherForecastDbContext(DbContextOptions<WeatherForecastDbContext> options) : base(options)
         {
+            var dbCreater = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
+            if (dbCreater != null)
+            {
+                if (!dbCreater.CanConnect())
+                {
+                    dbCreater.Create();
+                }
+
+                if (!dbCreater.HasTables())
+                {
+                    dbCreater.CreateTables();
+                }
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

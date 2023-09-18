@@ -9,9 +9,11 @@ namespace WeatherForecast.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static void ConfigureServices(IServiceCollection services)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<WeatherForecastDbContext>(options => options.UseInMemoryDatabase("TestDb"));
+            //services.AddDbContext<WeatherForecastDbContext>(options => options.UseInMemoryDatabase("TestDb"));
+            services.AddDbContext<WeatherForecastDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("Default")));
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IWeatherRepository), typeof(WeatherRepository));
